@@ -1,69 +1,102 @@
 <!doctype html>
 <html lang="ko">
-	<head>
-		<!-- Required meta tags -->
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<title>findID</title>
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>findID</title>
 
-		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-		<link rel="stylesheet" href="css/styles.css">
-	</head>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+	<!--<link rel="stylesheet" href="css/styles.css">-->
+</head>
 
-	<body>
-		<br />
-		<div class="container-fluid">
-			<div class="row mp-title-space">
-				<div class="col">
-					<a class="btn btn-danger btn-block" href="findID.html" role="button">아이디 찾기</a>
-				</div>
-				<div class="col">
-					<a class="btn btn-danger btn-block" href="findpassword.html" role="button">패스워드 찾기</a>
-				</div>
-			</div>
-			<br /><br /><br /><br /><br />
-			<form>
-				<div class="form-group row lp-btn-upperspace">
-					<div class="col">
-						<input type="number" class="form-control" id="InputPhoneNum3" placeholder="휴대폰 번호를 입력해 주세요" required>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col"></div>
-					<div class="col-6">
-						<button id="btn_findID" type="submit" class="btn btn-danger btn-block">ID 찾기</button>
-					</div>
-					<div class="col"></div>
-				</div>
-			</form>
+<body>
+<br />
+<div class="container-fluid">
+	<div class="row mp-title-space">
+		<div class="col">
+			<a class="btn btn-danger btn-block" href="findID.html" role="button">아이디 찾기</a>
 		</div>
+		<div class="col">
+			<a class="btn btn-danger btn-block" href="findpassword.html" role="button">패스워드 찾기</a>
+		</div>
+	</div>
+	<br /><br /><br /><br /><br />
+	<form>
+		<div class="form-group row lp-btn-upperspace">
+			<div class="col" id="result_div">
+				<input type="number" class="form-control" id="InputPhoneNum3" placeholder="휴대폰 번호를 입력해 주세요" required>
+				/*왜 스크롤바가 생겼는지  form-control required */
+			</div>
+		</div>
+	</form>
+	<div class="row">
+		<div class="col"></div>
+		<div class="col-6" id="result_btn">
+			<button id="btn_findID" class="btn btn-danger btn-block">ID 찾기</button>
 
-		<!-- Optional JavaScript -->
-		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
-		<script>
-			$("#btn_findID").click(function(){
-				var phoneNum = $("#InputPhoneNum3").val();
-				
-				alert(phoneNum);
-				location.replace("result_findID.html");
-				
-				jQuery.ajax({
-					type:"POST",
-					url: ,
-					data:{"phoneNum" : phoneNum},
-					dataType:"JSON",
-					success:function(data){
-						location.replace("result_findID.html");
-					},
-					error:function(xhr, status, error){
-						alert("다시 시도해 주세요.");
-					}
-				});
-			});
-		</script>
-	</body>
+		</div>
+		<div class="col"></div>
+	</div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+         /*
+         $("#btn_findID").click(function(){
+            var phoneNumber = $("#InputPhoneNum3").val();
+            alert(phoneNumber);
+            jQuery.ajax({
+               type : "POST",
+               url :"",
+               data : {phoneNumber : phoneNumber},
+               dataType : "JSON",
+               success:function(data){
+                  location.replace("result_findID.html");
+                  //result_findID.html 페이지에 아이디 뿌리기
+               },
+               error : function(xhr, status, error){
+                  alert("다시 시도해주세요");
+               }
+            });
+         });
+         */
+      $(function(){
+         $("#btn_findID").click(function(){//btn_findID버튼을 클릭하면 함수 실행
+            var phoneNum = "phoneNum=" + $("#InputPhoneNum3").val();
+            $.ajax({
+               type:'POST',
+               url:'http://13.124.63.236:8080/gungduk/api/v1/searchId',
+               data: phoneNum,
+                // 줄 때랑 받을 때랑 차이가 있는지
+               //dataType:"json",
+               async:false,
+               //contentType:"application/json;charset=UTF-8",
+               success:function(data){
+                  $("#InputPhoneNum3").remove();//2. 입력창 지움
+                  $("#result_div").append("<p class='text-center font-weight-bold'>아이디는 " + data +"입니다.</p>");
+                  $("#btn_findID").remove();
+                  $("#result_btn").append("<a class='btn btn-danger btn-block' href='index.html' role='button'>확인</a>");
+                  //location.replace("result_findID.html");
+               },
+               error:function(request,error){ //여기 물어보기
+                  alert("message:"+request.responseText);
+               }
+            });
+         });
+      });
+      </script>
+</body>
 </html>
+<!--
+            /*
+            var email = $("#InputEmail2").val()//input박스 안에 쓰는 값.
+            document.getElementById("#InputEmail12").value; //자바스크립트
+            $("#InputEmail12").val(); //제이쿼리
+            */
+-->
