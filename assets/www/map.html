@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>네이버 지도 API</title>
+	<link rel="stylesheet" type="text/css" href="css/pop.css"><!--hidden 팝업 css--> 
+	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=sltpLBRnYuvswKLpTftK&submodules=geocoder"></script>
+</head>
+<body>
+	<h1>Naver Map Test</h1>
+	
+	<div id="map" style="width:100%;height:400px;"></div>
+
+	<script>
+		var map = new naver.maps.Map('map');
+
+	 //   	var map = new naver.maps.Map('map', {
+  //   	mapTypeId: naver.maps.MapTypeId.HYBRID
+		// }); //이 지도 유형 좋은 것 같기도!
+
+		var Gyeongbok_plc = new naver.maps.LatLng(37.579813, 126.976998);
+
+		map.setCenter(Gyeongbok_plc); // 중심 좌표 이동
+		map.setZoom(13);     // 줌 레벨 변경
+
+		//마커
+		var Gyenongbok_marker = new naver.maps.Marker({
+		    position: new naver.maps.LatLng(37.579813, 126.976998),
+		    map: map
+		});
+
+
+		var startLoop;
+
+		var nowHere_marker; //현 위치 마커
+
+
+	// 	/*현 위치 받아오기??*/
+	// 	var infowindow = new naver.maps.InfoWindow();
+
+	// 	function onSuccessGeolocation(position) {
+	// 		var location = new naver.maps.LatLng(position.coords.latitude,
+	// 			position.coords.longitude);
+
+	//     map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
+	//     map.setZoom(10); // 지도의 줌 레벨을 변경합니다.
+
+	//     infowindow.setContent('<div style="padding:20px;">' +
+	//     	'latitude: '+ location.lat() +'<br />' +
+	//     	'longitude: '+ location.lng() +'</div>');
+
+	//     infowindow.open(map, location);
+	// }
+
+	// function onErrorGeolocation() {
+	// 	var center = map.getCenter();
+
+	// 	infowindow.setContent('<div style="padding:20px;">' +
+	// 		'<h5 style="margin-bottom:5px;color:#f00;">Geolocation failed!</h5>'+ "latitude: "+ center.lat() +"<br />longitude: "+ center.lng() +'</div>');
+
+	// 	infowindow.open(map, center);
+	// }
+
+	// $(window).on("load", function() {
+	// 	if (navigator.geolocation) {
+	// 		navigator.geolocation.getCurrentPosition(onSuccessGeolocation, onErrorGeolocation);
+	// 	} else {
+	// 		var center = map.getCenter();
+
+	// 		infowindow.setContent('<div style="padding:20px;"><h5 style="margin-bottom:5px;color:#f00;">Geolocation not supported</h5>'+ "latitude: "+ center.lat() +"<br />longitude: "+ center.lng() +'</div>');
+	// 		infowindow.open(map, center);
+	// 	}
+	// });
+
+
+// function checkAvailability(){
+//     cordova.plugins.diagnostic.isGpsLocationAvailable(function(available){
+//         console.log("GPS location is " + (available ? "available" : "not available"));
+//         if(!available){
+//            checkAuthorization();
+//         }else{
+//             console.log("GPS location is ready to use");
+//         }
+//     }, function(error){
+//         console.error("The following error occurred: "+error);
+//     });
+// }
+
+// function checkAuthorization(){
+//     cordova.plugins.diagnostic.isLocationAuthorized(function(authorized){
+//         console.log("Location is " + (authorized ? "authorized" : "unauthorized"));
+//         if(authorized){
+//             checkDeviceSetting();
+//         }else{
+//             cordova.plugins.diagnostic.requestLocationAuthorization(function(status){
+//                 switch(status){
+//                     case cordova.plugins.diagnostic.permissionStatus.GRANTED:
+//                         console.log("Permission granted");
+//                         checkDeviceSetting();
+//                         break;
+//                     case cordova.plugins.diagnostic.permissionStatus.DENIED:
+//                         console.log("Permission denied");
+//                         // User denied permission
+//                         break;
+//                     case cordova.plugins.diagnostic.permissionStatus.DENIED_ALWAYS:
+//                         console.log("Permission permanently denied");
+//                         // User denied permission permanently
+//                         break;
+//                 }
+//             }, function(error){
+//                 console.error(error);
+//             });
+//         }
+//     }, function(error){
+//         console.error("The following error occurred: "+error);
+//     });
+// }
+
+// function checkDeviceSetting(){
+//     cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
+//         console.log("GPS location setting is " + (enabled ? "enabled" : "disabled"));
+//         if(!enabled){
+//             cordova.plugins.locationAccuracy.request(function (success){
+//                 console.log("Successfully requested high accuracy location mode: "+success.message);
+//                 //여기가 GPS활성화를 했을경우(확인을 선택경우)
+//                 //이후 geolocation API 사용~~
+//             }, function onRequestFailure(error){
+//                 //여기는 GPS활성화를 안했을경우(취소를 선택한경우)
+//                 //geolocation API 사용하면 안됨.
+//                 console.error("Accuracy request failed: error code="+error.code+"; error message="+error.message);
+//                 if(error.code !== cordova.plugins.locationAccuracy.ERROR_USER_DISAGREED){
+//                     if(confirm("Failed to automatically set Location Mode to 'High Accuracy'. Would you like to switch to the Location Settings page and do this manually?")){
+//                         cordova.plugins.diagnostic.switchToLocationSettings();
+//                     }
+//                 }
+//             }, cordova.plugins.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY);
+//         }
+//     }, function(error){
+//         console.error("The following error occurred: "+error);
+//     });
+// }
+
+// checkAvailability(); // start the check[출처] 구글맵 API(Google Maps API) 사용시 주의사항 - navigator.geolocation.getCurrentPosition|작성자 노란창문
+
+
+
+
+
+
+
+
+
+
+/************https://chongmoa.com:45183/html/3015 현재 위치 불러오기*************/
+  window.onload=function(){
+    //위치정보를 확인할 수 있는 브라우저인지 확인
+    if(navigator.geolocation == undefined){
+        alert("위치 정보 기능을 지원하지 않습니다!")
+        return;
+    }
+ }
+
+
+ 
+ //현재 위치 정보 알아보는 메소드
+ function showData(){
+
+
+	// checkAvailability();
+
+	//nowHere_marker.setMap(null);//이전 마커 없애기.
+
+	if(navigator.geolocation){
+
+		//nowHere_marker.setMap(null);//이전 마커 없애기.
+
+        navigator.geolocation.getCurrentPosition(success, fail); //현재 위치 정보를 조사하고 성공 실패 했을시 호출되는 함수 설정
+	}else{
+		alert('브라우저가 geolocation을 지원하지 않습니다!.');
+	}
+	// setTimeout(showData, 1000);
+}
+ 
+ function loopData(){
+		
+ startLoop = setInterval(showData, 500); //0.5초 간격
+ 
+ }
+
+ function stopData(){
+
+ 	clearInterval(startLoop);
+ }
+
+
+ function success(position) { //성공시
+
+	if(nowHere_marker != null){
+		nowHere_marker.setMap(null);//이전 마커 없애기.
+	}
+
+    log("위치정보 확인 성공!");
+    for(var property in position.coords) { //반복문 돌면서 출력
+        log("Key 값:"+property+" 정보:"+position.coords[property]);
+    }
+
+    var lat=position.coords["latitude"];
+    var lon=position.coords["longitude"];
+
+//     var url="http://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lon+"&sensor=false";
+     //location.href = url;//페이지 이동하기
+
+	var nowHere = new naver.maps.LatLng(lat,lon);
+
+	map.setCenter(nowHere); // 중심 좌표 이동
+	map.setZoom(13);     // 줌 레벨 변경
+
+	// nowHere_marker = new naver.maps.Marker({
+	// 	position: new naver.maps.LatLng(lat, lon),
+	// 	map: map
+	// });
+
+	nowHere_marker = new naver.maps.Marker({
+		position: new naver.maps.LatLng(lat, lon),
+		map: map,
+		icon: {
+			url: './img/test2.png',				
+			// size: new naver.maps.Size(35, 36),
+			// origin: new naver.maps.Point(0, 0),
+        	// anchor: new naver.maps.Point(25, 26)
+		}
+	});
+
+
+	//마커 없어지는 것 테스트!
+	//nowHere_marker.setMap(null); 
+
+
+	//ajax 통신
+
+/*	var object = new Object();
+	object.lat = lat;
+	object.lon = lon;
+
+	var jsonData = JSON.stringify(object);
+
+
+
+	$.ajax({
+		url: "http://localhost:8182/test1/map.do",
+		type: 'post', //post가 맞을까?
+		contentType: "application/json;charset=UTF-8",
+		data: jsonData,
+		success:function(){
+			alert('위치 값(위도, 경도)을 저장하였습니다.');
+		},
+		error:function(){
+			alert('위치 값을 저장하는 데 실패하였습니다.');
+		}
+	});*/
+
+ }
+ 
+ //실패시
+ function fail(err){
+    switch (err.code){
+        case err.PERMISSION_DENIED:
+            msg = "사용자 거부";
+        break;
+ 
+        case err.PERMISSION_UNAVAILABLE:
+            msg = "지리정보를 얻을 수 없음";
+        break;
+ 
+        case err.TIMEOUT:
+            msg = "시간초과";
+        break;
+ 
+        case err.UNKNOWN_ERROR:
+            msg = "알 수 없는 오류 발생";
+        break;
+    }
+        log(msg);
+ }
+  
+ function log(msg){
+    var console = document.getElementById("console");
+    console.innerHTML += msg+"<br/>";
+ }
+	
+
+</script>
+ 
+<!--  <button onclick="showData()">현재 위치 확인</button> -->
+<button onclick="loopData()">실시간 위치 확인</button>
+<button onclick="stopData()">위치 그만 보기</button>
+ 
+<div id="console" style="width:500px; border:5px; font-size:20px"></div>
+
+
+</body>
+</html>

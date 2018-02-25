@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="kor">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<title>loginpage</title>
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+		<link rel="stylesheet" href="css/styles.css">
+	</head>
+
+	<body>
+		<br /><br /><br /><br />
+		<div class="container-fluid">
+			<form>
+				<div class="form-group row lp-title-upperspace">
+					<label for="InputEmail1" class="col-3 col-form-label text-center">E-MAIL</label>
+					<div class="col-9">
+						<input type="email" class="form-control" id="InputEmail1" placeholder="Enter email" required>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="InputPassword1" class="col-3 col-form-label text-center">PW</label>
+					<div class="col-9">
+						<input type="password" class="form-control" id="InputPassword11" placeholder="Enter password" required>
+					</div>
+				</div>
+				<br /><br />
+				<button id="btn_login" type="submit" class="btn btn-danger btn-block">로그인</button>
+				<br />
+				<button id="btn_flogin" type="button" class="btn btn-primary btn-block">페이스북 로그인</button>
+			</form>
+			<br />
+			<div class="row lp-btn-upperspace">
+				<div class="col">
+					<a class="btn btn-secondary btn-block" href="findID.html" role="button">아이디/비밀번호 찾기</a>
+				</div>
+				<div class="col">
+					<a class="btn btn-secondary btn-block" href="signup.html" role="button">회원가입</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+		<script>
+			$("#btn_login").click(function(){
+				var email = $("#InputEmail1").val();//input박스 안에 쓰는 값.
+				var password = $("#InputPassword11").val();
+				
+				alert(email + " " + password);
+				location.replace("main.html");
+
+				jQuery.ajax({
+					type : "POST",
+					url : "",
+					data : {"email": email, "password" : password},
+					dataType:"JSON",
+					success:function(data){
+						location.replace("main.html");
+					},
+					error:function(xhr, status, error){
+						alert("다시 시도해주세요.");
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
